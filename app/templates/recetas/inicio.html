@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block titulo %}Recetas{% endblock %}
+
+{% block contenido %}
+{% include 'menu.html'%}
+
+<h1>Bienvenido, {{session.usuario.nombre}}</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto text-center">
+            <h3>Opciones</h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pizzas</h5>
+                    <p class="card-text">Listado</p>
+                    <ul>
+                        <li>
+                            <strong>Pizza Margarita</strong>
+                            <img src="{{ url_for('static', filename='img/pizza-margarita.jpg') }}" widht="300" height="200">
+                            <ul>
+                                <li>Mozzarella</li>
+                                <li>Salsa de tomate</li>
+                                <li>Albahaca</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li>
+                            <strong>Pizza Hawaiana</strong>
+                            <img src="{{ url_for('static', filename='img/pizza-hawaiana.jpg') }}" widht="300" height="200">
+                            <ul>
+                                <li>Jamón</li>
+                                <li>Piña</li>
+                                <li>Mozzarella</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li> 
+                            <strong>Pizza Pepperoni</strong>
+                            <img src="{{ url_for('static', filename='img/pizza-peperoni.jpg') }}" widht="300" height="200">
+                            <ul>
+                                <li>Pepperoni</li>
+                                <li>Salsa de tomate</li>
+                                <li>Mozzarella</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button id="boton1" class="btn btn-primary">New Order</button> -->
+                <a class="btn btn-outline-success" href="/craft_a_pizza">New Order</a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mis Favoritas</h5>
+                    <p class="card-text">Aca veras tus pizzas favoritas agregadas a lo largo del tiempo.</p>
+                </div>
+                <!-- <button id="boton2" class="btn btn-primary">RE-Order My Fave</button> -->
+                <a class="btn btn-outline-success" href="/craft_a_pizza">RE-Order My Fave</a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Al Azar</h5>
+                    <p class="card-text">Listado</p>
+                    <ul>
+                        <li>
+                            <strong>Pizza Margarita</strong>
+                            <img src="{{ url_for('static', filename='img/pizza-margarita.jpg') }}" widht="300" height="200">
+                            <ul>
+                                <li>Mozzarella</li>
+                                <li>Salsa de tomate</li>
+                                <li>Albahaca</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li>
+                            <strong>Pizza Hawaiana</strong>
+                            <img src="{{ url_for('static', filename='img/pizza-hawaiana.jpg') }}" widht="300" height="200">
+                            <ul>
+                                <li>Jamón</li>
+                                <li>Piña</li>
+                                <li>Mozzarella</li>
+                            </ul>
+                        </li>
+                        <br>
+                        <li> 
+                            <strong>Pizza Pepperoni</strong>
+                            <img src="{{ url_for('static', filename='img/pizza-peperoni.jpg') }}" widht="300" height="200">
+                            <ul>
+                                <li>Pepperoni</li>
+                                <li>Salsa de tomate</li>
+                                <li>Mozzarella</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button id="boton3" class="btn btn-primary">Surpriseme</button> -->
+                <a class="btn btn-outline-success" href="/craft_a_pizza">Surpriseme</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
