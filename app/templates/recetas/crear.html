@@ -49,8 +49,8 @@
                     <option value="5">5</option>
                 </select>
 
-                
-                
+
+
             </div>
         </div>
 
@@ -188,24 +188,19 @@
         "pepperoni": "topping6",
         "Aceitunas": "topping7",
         "Cebolla": "topping8",
-        "Champiñones": "topping9",
+        "champignon": "topping9",
         "Pimentón": "topping10"
     }
 
     for (let i = 0; i < document.name.elements.length; i++) {
 
         toppings.forEach(element => {
-
             topping = (
                 element
-                    .slice(3, element.length - 2)
-                    .replace(/'/g, "")
+                    .replace(/\n/g, "")
+                    .slice(0, element.length)
                     .replace(/ /g, "")
-                    .replace(/\[/g, "")
             );
-
-            console.log(topping_ids[topping]);
-            console.log(document.name.elements[i].id);
 
             if (topping_ids[topping] === document.name.elements[i].id) {
                 document.name.elements[i].checked = true;
