@@ -22,3 +22,24 @@ def account():
     #pizza_detalle = eval(pizza_detalle)
 
     # return render_template('detalle.html', pizza=pizza_detalle)
+
+# Ruta para mostrar la página principal y el carrito de compras
+@app.route('/')
+def mostrar_carrito():
+    # Obtener el carrito de la sesión o crear uno nuevo
+    if 'carrito' not in session:
+        session['carrito'] = []
+
+    carrito = session['carrito']
+
+    return render_template('crear.html', carrito=carrito)
+
+# Ruta para agregar un producto al carrito
+@app.route('/agregar', methods=['POST'])
+def agregar_al_carrito():
+    producto = request.form.get('producto')
+
+    # Agregar el producto al carrito en la sesión
+    session['carrito'].append(producto)
+
+    return redirect(url_for('mostrar_carrito'))

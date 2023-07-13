@@ -65,7 +65,15 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Mis Favoritas</h5>
-                    <p class="card-text"></p>
+                    {% if pizzas %}
+                    <ul>
+                        {% for pizza in pizzas %}
+                        <li>{{ pizza }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p>El usuario no tiene pizzas favoritas.</p>
+                    {% endif %}
                 </div>
                 <!-- <button id="boton2" class="btn btn-primary">RE-Order My Fave</button> -->
                 <a class="btn btn-outline-success" href="/craft_a_pizza?random=false">RE-Order My Fave</a>

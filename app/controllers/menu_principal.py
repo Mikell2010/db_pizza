@@ -15,12 +15,11 @@ def menu_principal():
     favoritos = Favorito.get_all()
     pizzas = Pizza.get_all()
 
-    return render_template('recetas/inicio.html', favoritos=favoritos, pizzas=pizzas
-                           )
+    return render_template('recetas/inicio.html', favoritos=favoritos, pizzas=pizzas)
 
 
-# @app.route('/agregar_pizza', methods=['POST'])
-# def agregar_pizza():
+@app.route('/agregar_pizza', methods=['POST'])
+def agregar_pizza():
     print("POST: ", request.form)
 
     if not Pizza.validar(request.form):
@@ -30,8 +29,8 @@ def menu_principal():
 
     return redirect('/menu_principal')
 
-# @app.route('/procesar_pizza', methods=['POST'])
-# def procesar_pizza():
+@app.route('/procesar_pizza', methods=['POST'])
+def procesar_pizza():
     print("POST: ", request.form)
 
     data = {
@@ -56,8 +55,8 @@ def editar_pizza(id):
     # pendiente logica y template
     return render_template('recetas/crear.html', pizza=pizza)
 
-# @app.route('/actualizar_pizza', methods=['POST'])
-# def actualizar_pizza():
+@app.route('/actualizar_pizza', methods=['POST'])
+def actualizar_pizza():
     print("POST: ", request.form)
 
     if not Pizza.validar(request.form):
@@ -68,8 +67,8 @@ def editar_pizza(id):
     return redirect('/menu_principal')
 
 
-# @app.route('/agregar_favorito', methods=['POST'])
-# def agregar_favorito():
+@app.route('/agregar_favorito', methods=['POST'])
+def agregar_favorito():
     print("POST: ", request.form)
 
     if not Favorito.validar(request.form):
@@ -80,8 +79,8 @@ def editar_pizza(id):
     return redirect('/menu_principal')
 
 
-# @app.route('/procesar_favorito', methods=['POST'])
-# def procesar_favorito():
+#@app.route('/procesar_favorito', methods=['POST'])
+#def procesar_favorito():
     print("POST: ", request.form)
 
     data = {
@@ -94,14 +93,29 @@ def editar_pizza(id):
     return redirect("/menu_principal")
 
 
-@app.route('/editar_favorito/<int:id>')
-def editar_favorito(id):
+#@app.route('/editar_favorito/<int:id>')
+#def editar_favorito(id):
     favorito = Favorito.get_by_id(id)
     # pendiente logica y template
     return render_template('recetas/crear.html', favorito=favorito)
 
-# @app.route('/actualizar_favorito', methods=['POST'])
-# def actualizar_favorito():
+
+@app.route('/favoritas/<int:usuario_id>')
+def mostrar_pizzas_favoritas(usuario_id):
+    pizzas_favoritas = Pizza.query.filter_by(favorito=True).all()
+    pizzas_usuario = []
+
+    for pizza in pizzas_favoritas:
+        if pizza.usuario_id == usuario_id:
+            pizzas_usuario.append(pizza)
+
+    return render_template('favoritas.html', pizzas=pizzas_usuario)
+
+
+
+
+@app.route('/actualizar_favorito', methods=['POST'])
+def actualizar_favorito():
     print("POST: ", request.form)
 
     if not Favorito.validar(request.form):
@@ -112,8 +126,8 @@ def editar_favorito(id):
     return redirect('/menu_principal')
 
 
-# @app.route('/sorprendeme', methods=['POST'])
-# def sorprendeme():
+@app.route('/sorprendeme', methods=['POST'])
+def sorprendeme():
     print("POST: ", request.form)
 
     if not Pizza.validar(request.form):
@@ -151,11 +165,4 @@ def craft_a_pizza():
         toppings=pizza_topping
     )
 
-# <!-- obtener topping de la pizza -->
-# <!-- marcar los checkboxs de la pizza con javascript
-#     for (let i=0; i < document.f1.elements.length; i++) {
-#         if(document.f1.elements[i].type === "checkbox") {
-#             document.f1.elements[i].checked = true;
-#         }
-#     }
-# -->
+
