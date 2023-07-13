@@ -12,15 +12,18 @@ def menu_principal():
     if 'usuario' not in session:
         return redirect('/login')
 
-    pizzas = Pizza.get_all()
-    favoritos = []
+    pizzas = Pizza.get_all()  # n = 3
+    favoritos = Favorito.get_all()
+
     nombre_favoritos = []
 
-    for i in pizzas:
-        favoritos.append(Favorito.get_by_pizza_id(i["id"]))
-    # favoritos = Favorito.get_all()
+    # for i in pizzas:
+    # favoritos.append(Favorito.get_by_pizza_id(i["id"]))
+    # print(Favorito.get_by_pizza_id(i["id"]))
+
     for i in favoritos:
-        nombre_favoritos.append(Pizza.get(i["id"]))
+        print(i)
+        nombre_favoritos.append(Pizza.get(i["pizza_id"]))
 
     return render_template('recetas/inicio.html', favoritos=nombre_favoritos, pizzas=pizzas)
 
