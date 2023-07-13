@@ -20,10 +20,9 @@ def menu_principal():
     # for i in pizzas:
     # favoritos.append(Favorito.get_by_pizza_id(i["id"]))
     # print(Favorito.get_by_pizza_id(i["id"]))
-
     for i in favoritos:
-        print(i)
-        nombre_favoritos.append(Pizza.get(i["pizza_id"]))
+        if (i["usuario_id"] == session["usuario"]["usuario_id"]):
+            nombre_favoritos.append(Pizza.get(i["pizza_id"]))
 
     return render_template('recetas/inicio.html', favoritos=nombre_favoritos, pizzas=pizzas)
 
