@@ -126,19 +126,21 @@ def editar_favorito(id):
 
 @app.route('/craft_a_pizza', methods=['GET', 'POST'])
 def craft_a_pizza():
-    print("POST: ", request.form)
-
+    print("POST: ", request.url)
+    pizzas = []
+    pizza_topping = []
     # if not Pizza.validar(request.form):
     # return redirect('/menu_principal')
     if request.method == 'post':
         Pizza.agregar(request.form)  # logica formulario
 
     # if (cond): si el llamaddo viene de surpriseme
-    pizzas = Pizza.get_random()
-    # <!-- obtener id de pizza -->
-    pizza_id = pizzas['id']
-    pizza_topping = pizzas['descripcion_pizza']
-    print(pizza_topping)
+    if request.args.get('random') == 'true':
+        pizzas = Pizza.get_random()
+        # <!-- obtener id de pizza -->
+        pizza_id = pizzas['id']
+        pizza_topping = pizzas['descripcion_pizza']
+        print(pizza_topping)
     # toppings = pizza_topping.split('y')
     # all_pizza_toppings = Pedido.get_all_toppings(pizza_id)
     # print(all_pizza_toppings)
