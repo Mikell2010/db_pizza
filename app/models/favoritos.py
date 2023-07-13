@@ -59,7 +59,7 @@ class Favorito:
         }
         result = connectToMySQL(os.getenv("BASE_DE_DATOS")).query_db(sql, data)
 
-        return cls(result[0])
+        return (result[0])
 
     # def get_by_usuario_id(cls, usuario_id): #esta de mas
 
@@ -72,7 +72,7 @@ class Favorito:
             'pizza_id': pizza_id
         }
         result = connectToMySQL(os.getenv("BASE_DE_DATOS")).query_db(sql, data)
-        
+
         return (result[0])
 
     @classmethod
@@ -86,7 +86,7 @@ class Favorito:
         }
         result = connectToMySQL(os.getenv("BASE_DE_DATOS")).query_db(sql, data)
 
-        return cls(result[0])
+        return (result[0])
 
     @classmethod
     def delete(cls, id):

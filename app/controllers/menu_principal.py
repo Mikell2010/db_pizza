@@ -152,24 +152,23 @@ def craft_a_pizza():
     print("POST: ", request.url)
     pizzas = []
     pizza_topping = []
-    # if not Pizza.validar(request.form):
-    # return redirect('/menu_principal')
+
     if request.method == 'post':
         Pizza.agregar(request.form)  # logica formulario
 
-    # if (cond): si el llamaddo viene de surpriseme
     if request.args.get('random') == 'true':
         pizzas = Pizza.get_random()
-        # pizza_id = pizzas['id']
         pizza_topping = pizzas['descripcion_pizza']
 
     if request.args.get('favorite') == 'true':
-        print("do fave")
-        #favorite = Favorito.get()
+        usuario_id = session['usuario']['usuario_id']
+        pizza_id = 1
+        favorite = Favorito.get_by_usuario_id_and_pizza_id(
+            usuario_id, pizza_id)
 
     return render_template(
         'recetas/crear.html',
         pizzas=pizzas,  # de la base de datos
-        toppings=pizza_topping
-        # favorite=favorite
+        toppings=pizza_topping,
+        favorite=favorite
     )

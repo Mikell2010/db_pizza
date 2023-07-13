@@ -11,6 +11,9 @@
 <div id="toppings" hidden>
     {{toppings}}
 </div>
+<div id="favorite" hidden>
+    {{favorite}}
+</div>
 
 <form action="/craft_a_pizza" method="post">
     <div class="container">
@@ -196,7 +199,9 @@
 
     console.log("Hola Mundo");
     toppings = document.getElementById("toppings").innerHTML.split(",")
+    favorite = document.getElementById("favorite").innerHTML
     console.log(toppings);
+    console.log(favorite);
 
     const topping_ids = {
         "mozzarella": "topping1",
