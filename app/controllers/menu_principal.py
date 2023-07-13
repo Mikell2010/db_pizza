@@ -135,17 +135,18 @@ def craft_a_pizza():
     
     # <!-- obtener id de pizza -->
     pizzas = Pizza.get_random()
-    pizza_id =pizzas[0]['id']
-    pizza_topping = pizzas[0]['descripcion_pizza']
-    toppings = pizza_topping.split('y')
-    print(toppings)
-    # all_pizza_toppings = Pedido.get_all_toppings(pizza_id)
-    # print(all_pizza_toppings)
+    #pizza_id =pizzas[0]['id']
+    #pizza_topping = pizzas[0]['descripcion_pizza']
+    #toppings = pizza_topping.split('y')
+    #print(toppings)
+    print(pizzas)
+    #all_pizza_toppings = Pedido.get_all_toppings(pizza_id)
+    #print(all_pizza_toppings)
 
     return render_template(
         'recetas/crear.html', 
-        pizzas = pizzas, 
-        toppings = toppings
+        pizzas = pizzas, #de la base de datos
+        #toppings = toppings
     )
 
 # <!-- obtener topping de la pizza -->

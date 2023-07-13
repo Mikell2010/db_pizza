@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block titulo %}Your Order{% endblock %}
+
+{% block contenido %}
+{% include 'menu.html'%}
+<!-- <div class="card" style="width: 18rem;">
+    <div class="card-header">
+        Your Order
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Method: {{session.pedido.methods}}</li>
+        <li class="list-group-item">Cantidad: {{session.pizza.cantidad}}</li>
+        <li class="list-group-item">Size: {{session.pizza.size}}</li>
+        <li class="list-group-item">Crust: {{session.pizza.crust}}</li>
+        <li class="list-group-item">Toppings: {{session.pedido.toppings_elegidos}}</li>
+        <span>
+            <li class="list-group-item">Total: {{session.pedido.total}}</li>
+        </span>
+        
+    </ul>
+    <div>
+        <button type="button" class="btn btn-danger">Start Over</button>
+
+    </div>
+    <div>
+        <button type="button" class="btn btn-success">Purchase</button>
+
+    </div>
+</div> -->
+
+{% endblock %}

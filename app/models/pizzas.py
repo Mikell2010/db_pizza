@@ -87,9 +87,10 @@ class Pizza:
         SELECT id, size, crust, cantidad, descripcion_pizza, nombre_pizza, precio, created_at, updated_at FROM pizzas ORDER BY RAND() LIMIT 1;
         """
         result = connectToMySQL(os.getenv("BASE_DE_DATOS")).query_db(sql);
-
+        print(result)
+        print(result[0])
         if result:
-            return result
+            #return result[0]
             return cls(result[0])
         
         return None

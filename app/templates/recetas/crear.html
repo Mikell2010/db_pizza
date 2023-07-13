@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block titulo %}Crear Receta{% endblock %}
 
+
+
 {% block contenido %}
 {% include 'menu.html'%}
 
@@ -10,93 +12,101 @@
     {{toppings}}
 </div>
 
-<form name="name" action="/craft_a_pizza" method="post">  
+<form action="/craft_a_pizza" method="post">
     <div class="container">
 
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
-    
+
                 <h6>Method:</h6>
-                <select class="form-select" aria-label="Default select example">
-                    <option value="CO">CarryOut</option>
-                    <option value="DL">Delivery</option>
+                <select class="form-select" aria-label="Default select example" name="method">
+                    <option value="CO">CarryOut - $0</option>
+                    <option value="DL">Delivery - $1000</option>
                 </select>
-                
+
+
                 <h6>Size:</h6>
-                <select class="form-select" aria-label="Default select example">
-                    <option value="L">Large</option>
-                    <option value="M">Medium</option>
-                    <option value="S">Small</option>
+                <select class="form-select" aria-label="Default select example" name="size">
+                    <option value="L">Large - $2000</option>
+                    <option value="M">Medium -$1500</option>
+                    <option value="S">Small -$1000</option>
                 </select>
-                
+
+
                 <h6>Crust:</h6>
                 <select class="form-select" aria-label="Default select example">
                     <option value="G">Gruesa</option>
                     <option value="D">Delgada</option>
                 </select>
-                
+
+
                 <h6>Cantidad:</h6>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example" name="cantidad">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+
+                
+                
             </div>
         </div>
-    
+
     </div>
-    
+</form>
+
+<form name="name" action="/craft_a_pizza" method="post">
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <div class="text-center bg-primary p-5 text-white">
                     <h1>Toppings de Pizza</h1>
                     <p>Aquí puedes seleccionar tus toppings favoritos</p>
-    
+
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="topping1">
                         <label class="form-check-label" for="topping1">
                             Mozzarella
                         </label>
                     </div>
-    
+
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="topping2">
                         <label class="form-check-label" for="topping2">
                             Salsa de Tomate
                         </label>
                     </div>
-    
+
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="topping3">
                         <label class="form-check-label" for="topping3">
                             Albahaca
                         </label>
                     </div>
-    
+
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="topping4">
                         <label class="form-check-label" for="topping4">
                             Jamón
                         </label>
                     </div>
-                    
+
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="topping5">
                         <label class="form-check-label" for="topping5">
                             Piña
                         </label>
                     </div>
-    
+
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="topping6">
                         <label class="form-check-label" for="topping6">
                             Pepperoni
                         </label>
                     </div>
-                    
+
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="topping7">
                         <label class="form-check-label" for="topping7">
@@ -125,35 +135,44 @@
                         </label>
                     </div>
 
-                    <button type="button" class="btn btn-secondary mt-4" data-toggle="modal" data-target="#ticketModal">
-                        Add to Order
-                    </button>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="topping11">
+                        <label class="form-check-label" for="topping11">
+                            Tomate
+                        </label>
+                    </div>
+
+                    <!-- <button type="button" class="btn btn-secondary mt-4" data-toggle="modal" data-target="#ticketModal"> -->
+
+                    <a class="btn btn-outline-success" href="/account">Add to Order</a>
+                    <!-- </button> -->
                 </div>
             </div>
         </div>
     </div>
-    
-    <!-- Modal para mostrar el ticket -->
-    <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="ticketModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ticketModalLabel">Ticket de Pedido</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Aquí puedes mostrar los detalles del ticket de pedido.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
+</form>
+
+<!-- Modal para mostrar el ticket -->
+<div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="ticketModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ticketModalLabel">Ticket de Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Aquí puedes mostrar los detalles del ticket de pedido.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
-    
+</div>
+
 <script>
 
     console.log("Hola Mundo");
@@ -161,42 +180,48 @@
     console.log(toppings);
 
     const topping_ids = {
-        "mozzarella" : "topping1",
-        "Salsa de Tomate" : "topping2",
-        "albahaca" : "topping3",
-        "jamon" : "topping4",
-        "piña" : "topping5",
-        "pepperoni" : "topping6",
-        "Aceitunas" : "topping7",
-        "Cebolla" : "topping8",
-        "Champiñones" : "topping9",
-        "Pimentón" : "topping10"
+        "mozzarella": "topping1",
+        "Salsa de Tomate": "topping2",
+        "albahaca": "topping3",
+        "jamon": "topping4",
+        "piña": "topping5",
+        "pepperoni": "topping6",
+        "Aceitunas": "topping7",
+        "Cebolla": "topping8",
+        "Champiñones": "topping9",
+        "Pimentón": "topping10"
     }
 
-    for (let i=0; i < document.name.elements.length; i++) {
+    for (let i = 0; i < document.name.elements.length; i++) {
 
         toppings.forEach(element => {
-        
+
             topping = (
                 element
-                .slice(3, element.length - 2)
-                .replace(/'/g, "")
-                .replace(/ /g, "")
-                .replace(/\[/g, "")
-                );
+                    .slice(3, element.length - 2)
+                    .replace(/'/g, "")
+                    .replace(/ /g, "")
+                    .replace(/\[/g, "")
+            );
 
-                console.log(topping_ids[topping]);
-                console.log(document.name.elements[i].id);
+            console.log(topping_ids[topping]);
+            console.log(document.name.elements[i].id);
 
-            if(topping_ids[topping] === document.name.elements[i].id) {
+            if (topping_ids[topping] === document.name.elements[i].id) {
                 document.name.elements[i].checked = true;
             }
-    
+
         });
 
-    } 
+    }
+
+
+
+
 
 </script>
+
+<pre>{{ pizzas.__dict__ }}</pre>
 {% endblock %}
 
 <!-- obtener id de pizza -->
