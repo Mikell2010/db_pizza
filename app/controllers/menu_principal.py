@@ -20,9 +20,10 @@ def menu_principal():
     # for i in pizzas:
     # favoritos.append(Favorito.get_by_pizza_id(i["id"]))
     # print(Favorito.get_by_pizza_id(i["id"]))
+
     for i in favoritos:
-        if (i["usuario_id"] == session["usuario"]["usuario_id"]):
-            nombre_favoritos.append(Pizza.get(i["pizza_id"]))
+        print(i)
+        nombre_favoritos.append(Pizza.get(i["pizza_id"]))
 
     return render_template('recetas/inicio.html', favoritos=nombre_favoritos, pizzas=pizzas)
 
@@ -152,24 +153,24 @@ def craft_a_pizza():
     print("POST: ", request.url)
     pizzas = []
     pizza_topping = []
-
+    # if not Pizza.validar(request.form):
+    # return redirect('/menu_principal')
     if request.method == 'post':
         Pizza.agregar(request.form)  # logica formulario
 
+    # if (cond): si el llamaddo viene de surpriseme
     if request.args.get('random') == 'true':
         pizzas = Pizza.get_random()
+        # <!-- obtener id de pizza -->
+        pizza_id = pizzas['id']
         pizza_topping = pizzas['descripcion_pizza']
-
-    if request.args.get('favorite') == 'true':
-        usuario_id = session['usuario']['usuario_id']
-        pizza_id = 1
-        favorite = Favorito.get_by_usuario_id_and_pizza_id(
-            usuario_id, pizza_id)
-        # favorite_toppings = "usar favorite['id'] para obtener los topping de la pizza"
+        print(pizza_topping)
+    # toppings = pizza_topping.split('y')
+    # all_pizza_toppings = Pedido.get_all_toppings(pizza_id)
+    # print(all_pizza_toppings)
 
     return render_template(
         'recetas/crear.html',
         pizzas=pizzas,  # de la base de datos
-        toppings=pizza_topping,
-        favorite=favorite  # reemplazar favorite=favorite por favorite=favorite_toppings
+        toppings=pizza_topping
     )
