@@ -160,16 +160,16 @@ def craft_a_pizza():
     # if (cond): si el llamaddo viene de surpriseme
     if request.args.get('random') == 'true':
         pizzas = Pizza.get_random()
-        # <!-- obtener id de pizza -->
-        pizza_id = pizzas['id']
+        # pizza_id = pizzas['id']
         pizza_topping = pizzas['descripcion_pizza']
-        print(pizza_topping)
-    # toppings = pizza_topping.split('y')
-    # all_pizza_toppings = Pedido.get_all_toppings(pizza_id)
-    # print(all_pizza_toppings)
+
+    if request.args.get('favorite') == 'true':
+        print("do fave")
+        #favorite = Favorito.get()
 
     return render_template(
         'recetas/crear.html',
         pizzas=pizzas,  # de la base de datos
         toppings=pizza_topping
+        # favorite=favorite
     )
