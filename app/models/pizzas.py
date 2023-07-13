@@ -44,7 +44,7 @@ class Pizza:
         }
         result = connectToMySQL(os.getenv("BASE_DE_DATOS")).query_db(sql, data)
 
-        return cls(result[0])
+        return (result[0])
 
     @classmethod
     def delete(cls, id):

@@ -12,10 +12,17 @@ def menu_principal():
     if 'usuario' not in session:
         return redirect('/login')
 
-    favoritos = Favorito.get_all()
     pizzas = Pizza.get_all()
+    favoritos = []
+    nombre_favoritos = []
 
-    return render_template('recetas/inicio.html', favoritos=favoritos, pizzas=pizzas)
+    for i in pizzas:
+        favoritos.append(Favorito.get_by_pizza_id(i["id"]))
+    # favoritos = Favorito.get_all()
+    for i in favoritos:
+        nombre_favoritos.append(Pizza.get(i["id"]))
+
+    return render_template('recetas/inicio.html', favoritos=nombre_favoritos, pizzas=pizzas)
 
 
 @app.route('/agregar_pizza', methods=['POST'])
@@ -28,6 +35,7 @@ def agregar_pizza():
     Pizza.agregar(request.form)
 
     return redirect('/menu_principal')
+
 
 @app.route('/procesar_pizza', methods=['POST'])
 def procesar_pizza():
@@ -55,6 +63,7 @@ def editar_pizza(id):
     # pendiente logica y template
     return render_template('recetas/crear.html', pizza=pizza)
 
+
 @app.route('/actualizar_pizza', methods=['POST'])
 def actualizar_pizza():
     print("POST: ", request.form)
@@ -79,8 +88,8 @@ def agregar_favorito():
     return redirect('/menu_principal')
 
 
-#@app.route('/procesar_favorito', methods=['POST'])
-#def procesar_favorito():
+# @app.route('/procesar_favorito', methods=['POST'])
+# def procesar_favorito():
     print("POST: ", request.form)
 
     data = {
@@ -93,8 +102,8 @@ def agregar_favorito():
     return redirect("/menu_principal")
 
 
-#@app.route('/editar_favorito/<int:id>')
-#def editar_favorito(id):
+# @app.route('/editar_favorito/<int:id>')
+# def editar_favorito(id):
     favorito = Favorito.get_by_id(id)
     # pendiente logica y template
     return render_template('recetas/crear.html', favorito=favorito)
@@ -110,8 +119,6 @@ def mostrar_pizzas_favoritas(usuario_id):
             pizzas_usuario.append(pizza)
 
     return render_template('favoritas.html', pizzas=pizzas_usuario)
-
-
 
 
 @app.route('/actualizar_favorito', methods=['POST'])
@@ -164,5 +171,3 @@ def craft_a_pizza():
         pizzas=pizzas,  # de la base de datos
         toppings=pizza_topping
     )
-
-

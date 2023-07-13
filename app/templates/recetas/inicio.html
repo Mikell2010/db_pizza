@@ -65,10 +65,10 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Mis Favoritas</h5>
-                    {% if pizzas %}
+                    {% if favoritos %}
                     <ul>
-                        {% for pizza in pizzas %}
-                        <li>{{ pizza }}</li>
+                        {% for pizza in favoritos %}
+                        <li>{{ pizza.nombre_pizza }}</li>
                         {% endfor %}
                     </ul>
                     {% else %}
