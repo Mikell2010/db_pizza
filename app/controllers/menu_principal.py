@@ -165,10 +165,11 @@ def craft_a_pizza():
         pizza_id = 1
         favorite = Favorito.get_by_usuario_id_and_pizza_id(
             usuario_id, pizza_id)
+        # favorite_toppings = "usar favorite['id'] para obtener los topping de la pizza"
 
     return render_template(
         'recetas/crear.html',
         pizzas=pizzas,  # de la base de datos
         toppings=pizza_topping,
-        favorite=favorite
+        favorite=favorite  # reemplazar favorite=favorite por favorite=favorite_toppings
     )
