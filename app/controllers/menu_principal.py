@@ -11,7 +11,7 @@ def menu_principal():
 
     if 'usuario' not in session:
         return redirect('/login')
-
+    
     pizzas = Pizza.get_all()  # n = 3
     favoritos = Favorito.get_all()
 
@@ -164,14 +164,14 @@ def craft_a_pizza():
     if request.args.get('favorite') == 'true':
         usuario_id = session['usuario']['usuario_id']
         pizza_id = 1
-        favorite = Favorito.get_by_usuario_id_and_pizza_id(
-            usuario_id, pizza_id)
-        # favorite_toppings = "usar favorite['id'] para obtener los topping de la pizza"
+        #favorite = Favorito.get_by_usuario_id_and_pizza_id(
+        #usuario_id, pizza_id) #al comentar esto funciona re-order fav
+        favorite_toppings = "usar favorite['id'] para obtener los topping de la pizza"
 
     return render_template(
         'recetas/crear.html',
         pizzas=pizzas,  # de la base de datos
         toppings=pizza_topping,
-        favorite=favorite  # reemplazar favorite=favorite por favorite=favorite_toppings
+        #favorite=favorite  # reemplazar favorite=favorite por favorite=favorite_toppings #si lo comento me funciona el random
     )
 

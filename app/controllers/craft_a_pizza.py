@@ -1,4 +1,4 @@
-from flask import render_template, redirect, session, request, flash
+from flask import render_template, redirect, session, request, flash, url_for
 from app.models.favoritos import Favorito
 from app.models.usuarios import Usuario
 from app.models.pizzas import Pizza
@@ -24,15 +24,31 @@ def account():
     # return render_template('detalle.html', pizza=pizza_detalle)
 
 # Ruta para mostrar la página principal y el carrito de compras
-@app.route('/')
+@app.route('/carrito/')
 def mostrar_carrito():
     # Obtener el carrito de la sesión o crear uno nuevo
-    if 'carrito' not in session:
+    if "carrito" not in session:
+        session["carrito"] = {
+            "id": session["usuario"]["usuario_id"],
+            "productos": [
+                {
+                    "producto_id": 1,
+                    "cantidad": 1,
+                    "precio": 1000
+                },
+                {
+                    "producto_id": 2,
+                    "cantidad": 1,
+                    "precio": 200
+                }
+            ]
+        }
         session['carrito'] = []
-
+    
     carrito = session['carrito']
-
-    return render_template('crear.html', carrito=carrito)
+    #print(session['usuario']['usuario_id'])
+    #session['usuario'].append(session['usuario']['usuario_id']) sesion usuario nueva clave, agregar otra clave a la sesion 
+    return render_template('recetas/carrito.html', carrito=carrito)
 
 # Ruta para agregar un producto al carrito
 @app.route('/agregar', methods=['POST'])
@@ -43,3 +59,16 @@ def agregar_al_carrito():
     session['carrito'].append(producto)
 
     return redirect(url_for('mostrar_carrito'))
+
+
+
+@app.route('/order', methods=['GET', 'POST'])
+def order():
+    if request.method == 'POST':
+        Pizza.get_all(request.form)
+
+    # session['pedido'] = {
+    # 'methods': '<methods>'
+    # }
+
+    return render_template('recetas/order.html')

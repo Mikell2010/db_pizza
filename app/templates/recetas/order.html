@@ -3,29 +3,57 @@
 
 {% block contenido %}
 {% include 'menu.html'%}
-<!-- <div class="card" style="width: 18rem;">
+
+<div class="card" style="width: 18rem;" class="col-sm-6 mb-3 mb-sm-0">
     <div class="card-header">
-        Your Order
+        <strong>Your Order</strong>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Method: {{session.pedido.methods}}</li>
-        <li class="list-group-item">Cantidad: {{session.pizza.cantidad}}</li>
-        <li class="list-group-item">Size: {{session.pizza.size}}</li>
-        <li class="list-group-item">Crust: {{session.pizza.crust}}</li>
-        <li class="list-group-item">Toppings: {{session.pedido.toppings_elegidos}}</li>
+        <li class="list-group-item">Method: </li>
+        <li class="list-group-item">Cantidad: </li>
+        <li class="list-group-item">Size: </li>
+        <li class="list-group-item">Crust: </li>
+        <li class="list-group-item">Toppings: </li>
         <span>
-            <li class="list-group-item">Total: {{session.pedido.total}}</li>
+            <li class="list-group-item">Total: </li>
         </span>
-        
+
     </ul>
     <div>
-        <button type="button" class="btn btn-danger">Start Over</button>
+        <!-- <button type="button" class="btn btn-danger">Start Over</button> -->
+        <a class="btn btn-outline-danger" href="menu_principal">Start Over</a>
+
+        <!-- <button type="button" class="btn btn-success">Purchase</button> -->
+        <a id="purchaseButton" class="btn btn-outline-success" href="#">Purchase</a>
 
     </div>
-    <div>
-        <button type="button" class="btn btn-success">Purchase</button>
 
+</div>
+
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Your Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Compra Realizada Exitosamente!!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Gracias</button>
+                
+            </div>
+        </div>
     </div>
-</div> -->
+</div>
 
+<script>
+    let purchaseButton = document.getElementById('purchaseButton');
+    purchaseButton.addEventListener('click', function () {
+        let modal = new bootstrap.Modal(document.querySelector('.modal'));
+        modal.show();
+    });
+
+</script>
 {% endblock %}

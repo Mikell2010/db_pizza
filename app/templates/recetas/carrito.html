@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block titulo %}Carrito{% endblock %}
+
+
+
+{% block contenido %}
+{% include 'menu.html'%}
+
+{% if session.carrito %}
+carrito 
+{% else %}  
+no hay carrito
+{% endif %} 
+
+
+
+
+{% endblock %}
