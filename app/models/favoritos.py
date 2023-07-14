@@ -76,17 +76,16 @@ class Favorito:
         return (result[0])
 
     @classmethod
-    def get_by_usuario_id_and_pizza_id(cls, usuario_id, pizza_id):
+    def get_by_usuario_id(cls, usuario_id):
         sql = """
-        SELECT id, usuario_id, pizza_id, created_at, updated_at FROM favoritos where usuario_id = %(usuario_id)s and pizza_id = %(pizza_id)s;
+        SELECT id, usuario_id, pizza_id, created_at, updated_at FROM favoritos where usuario_id = %(usuario_id)s ;
         """
         data = {
-            'usuario_id': usuario_id,
-            'pizza_id': pizza_id
+            'usuario_id': usuario_id
         }
         result = connectToMySQL(os.getenv("BASE_DE_DATOS")).query_db(sql, data)
 
-        return (result[0])
+        return (result)
 
     @classmethod
     def delete(cls, id):

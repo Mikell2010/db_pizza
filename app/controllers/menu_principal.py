@@ -11,15 +11,11 @@ def menu_principal():
 
     if 'usuario' not in session:
         return redirect('/login')
-    
-    pizzas = Pizza.get_all()  # n = 3
+
+    pizzas = Pizza.get_all()
     favoritos = Favorito.get_all()
 
     nombre_favoritos = []
-
-    # for i in pizzas:
-    # favoritos.append(Favorito.get_by_pizza_id(i["id"]))
-    # print(Favorito.get_by_pizza_id(i["id"]))
 
     for i in favoritos:
         if (i["usuario_id"] == session["usuario"]["usuario_id"]):
@@ -153,6 +149,7 @@ def craft_a_pizza():
     print("POST: ", request.url)
     pizzas = []
     pizza_topping = []
+    favorite = []
 
     if request.method == 'post':
         Pizza.agregar(request.form)  # logica formulario
@@ -163,15 +160,19 @@ def craft_a_pizza():
 
     if request.args.get('favorite') == 'true':
         usuario_id = session['usuario']['usuario_id']
-        pizza_id = 1
-        #favorite = Favorito.get_by_usuario_id_and_pizza_id(
-        #usuario_id, pizza_id) #al comentar esto funciona re-order fav
-        favorite_toppings = "usar favorite['id'] para obtener los topping de la pizza"
+        favorite = Favorito.get_by_usuario_id(usuario_id)
+
+        if len(favorite) > 0:
+            favorite = favorite[0]
+        favorite_toppings = Pizza.get(favorite['pizza_id'])
+        favorite_toppings = favorite_toppings["descripcion_pizza"]
+
+        if (len(favorite_toppings) > 0):
+            pizza_topping = favorite_toppings
 
     return render_template(
         'recetas/crear.html',
         pizzas=pizzas,  # de la base de datos
         toppings=pizza_topping,
-        #favorite=favorite  # reemplazar favorite=favorite por favorite=favorite_toppings #si lo comento me funciona el random
+        favorite=favorite  # reemplazar favorite=favorite por favorite=favorite_toppings #si lo comento me funciona el random
     )
-
