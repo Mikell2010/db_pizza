@@ -154,6 +154,16 @@ def craft_a_pizza():
     if request.method == 'post':
         Pizza.agregar(request.form)  # logica formulario
 
+    
+        selected_toppings = request.form.getlist('toppings')
+        total = 0
+
+        for topping in selected_toppings:
+            total += int(topping)
+
+        return f"El total es: ${total}"
+
+
     if request.args.get('random') == 'true':
         pizzas = Pizza.get_random()
         pizza_topping = pizzas['descripcion_pizza']
@@ -176,3 +186,19 @@ def craft_a_pizza():
         toppings=pizza_topping,
         favorite=favorite  # reemplazar favorite=favorite por favorite=favorite_toppings #si lo comento me funciona el random
     )
+
+
+#como sumar los toppings de la pizza
+#create a list of toppings
+#create loop through the list and add the price of each topping to a total
+#return the total make a function that does this
+#call the function in the route how?
+#make sure the route is a post route
+#return the total in the route
+#make sure the route is a post route
+#make sure the form is a post form
+
+
+
+
+
