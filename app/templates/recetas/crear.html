@@ -206,9 +206,6 @@
     }
 
     function addToOrder(params) {
-        console.log("addToOrder");
-
-        // toppings = document.getElementById("toppings").innerHTML.split(',')
 
         toppings = document.getElementsByClassName("form-check-input")
 
@@ -223,17 +220,22 @@
 
         }
 
-        method = parseInt(document.getElementById("Method").value)
-        console.log(method);
-        size = parseInt(document.getElementById("Size").value)
-        console.log(size);
+        e = (document.getElementById("Method"))
+        method_price = parseInt(e.value)
+        method_text = e.options[e.selectedIndex].text;
+
+        e = (document.getElementById("Size"))
+        size_price = parseInt(e.value)
+        size_text = e.options[e.selectedIndex].text;
+
         Crust = document.getElementById("Crust").value
-        console.log(Crust);
         Cantidad = document.getElementById("Cantidad").value
-        console.log(Cantidad);
 
-
-        sessionStorage.setItem("topping_total", topping_total + method + size);
+        sessionStorage.setItem("method", method_text);
+        sessionStorage.setItem("size", size_text);
+        sessionStorage.setItem("Crust", Crust);
+        sessionStorage.setItem("Cantidad", Cantidad);
+        sessionStorage.setItem("topping_total", topping_total + method_price + size_price);
 
     }
 

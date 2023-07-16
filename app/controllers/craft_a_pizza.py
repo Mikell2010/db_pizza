@@ -89,11 +89,6 @@ def order():
     if request.method == 'POST':
         Pizza.get_all(request.form)
 
-    # session['carrito']
-
-    # session['pedido'] = {
-    # 'methods': '<methods>'
-    # }
     print("session /order")
     producto = []
     session['carrito'].append(producto)

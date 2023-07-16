@@ -11,11 +11,16 @@
     <ul class="list-group list-group-flush">
 
         {% for producto in session %}
-        <li class="list-group-item">Method: </li>
-        <li class="list-group-item">Cantidad: {{session}} </li>
-        <li class="list-group-item">Size: </li>
-        <li class="list-group-item">Crust: </li>
-        <li class="list-group-item">Toppings: </li>
+        <li class="list-group-item">Method: <p id="Method"></p>
+        </li>
+        <li class="list-group-item">Cantidad: <p id="Cantidad"></p>
+        </li>
+        <li class="list-group-item">Size: <p id="Size"></p>
+        </li>
+        <li class="list-group-item">Crust: <p id="Crust"></p>
+        </li>
+        <li class="list-group-item">Toppings: <p id="Toppings"></p>
+        </li>
         {% endfor %}
         <span>
             <li class="list-group-item">Total: <p id="total"></p>
@@ -59,6 +64,16 @@
     });
 
     document.getElementById("total").innerHTML = sessionStorage.getItem("topping_total")
+    document.getElementById("Method").innerHTML = sessionStorage.getItem("Method")
+    document.getElementById("Cantidad").innerHTML = sessionStorage.getItem("Cantidad")
+    document.getElementById("Size").innerHTML = sessionStorage.getItem("size")
+    document.getElementById("Crust").innerHTML = sessionStorage.getItem("Crust")
+    document.getElementById("Toppings").innerHTML = sessionStorage.getItem("Toppings")
+
+
+
+
+
 
 </script>
 {% endblock %}
