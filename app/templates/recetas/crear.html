@@ -147,8 +147,8 @@
 
                     <!-- <button type="button" class="btn btn-secondary mt-4" data-toggle="modal" data-target="#ticketModal"> -->
 
-                    <a class="btn btn-outline-success" onclick="addToOrder()">Add to Order</a>
-                    <!-- <a class="btn btn-outline-success" href="/account" onclick="addToOrder()">Add to Order</a> -->
+                    <!-- <a class="btn btn-outline-success" onclick="addToOrder()">Add to Order</a> -->
+                    <a class="btn btn-outline-success" href="/account" onclick="addToOrder()">Add to Order</a>
                     <!-- </button> -->
                 </div>
             </div>
@@ -175,6 +175,7 @@
 
     toppings = document.getElementById("toppings").innerHTML.split(",")
     favorite = document.getElementById("favorite").innerHTML
+    topping_total = 0;
 
     const topping_ids = {
         "mozzarella": "topping1",
@@ -211,32 +212,23 @@
     function addToOrder(params) {
         console.log("addToOrder");
 
-        topping1 = document.getElementById("topping1").value
-        console.log(topping1);
-        topping2 = document.getElementById("topping2").value
-        console.log(topping2);
-        topping3 = document.getElementById("topping3").value
-        console.log(topping3);
-        topping4 = document.getElementById("topping4").value
-        console.log(topping4);
-        topping5 = document.getElementById("topping5").value
-        console.log(topping5);
-        topping6 = document.getElementById("topping6").value
-        console.log(topping6);
-        topping7 = document.getElementById("topping7").value
-        console.log(topping7);
-        topping8 = document.getElementById("topping8").value
-        console.log(topping8);
-        topping9 = document.getElementById("topping9").value
-        console.log(topping9);
-        topping10 = document.getElementById("topping10").value
-        console.log(topping10);
-        topping11 = document.getElementById("topping11").value
-        console.log(topping11);
+        toppings = document.getElementById("toppings").innerHTML.split(',')
+        toppings = document.getElementsByClassName("form-check-input")
+
+        for (let index = 0; index < Object.keys(toppings).length; index++) {
+            const element = Object.keys(toppings)[index];
+
+            checked_topping = (toppings[element].checked);
+
+            if (checked_topping) {
+                topping_total += parseInt(toppings[element].value)
+            }
+
+        }
+
+        sessionStorage.setItem("topping_total", topping_total);
 
     }
-
-
 
 </script>
 
