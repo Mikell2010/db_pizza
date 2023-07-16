@@ -10,17 +10,20 @@
     </div>
     <ul class="list-group list-group-flush">
 
-        {% for producto in session.carrito.productos %}
-        <li class="list-group-item">Method: </li>
-        <li class="list-group-item">Cantidad: {{session.carrito.productos[0].cantidad}} </li>
-        <li class="list-group-item">Size: </li>
-        <li class="list-group-item">Crust: </li>
-        <li class="list-group-item">Toppings: </li>
+        {% for producto in session %}
+        <li class="list-group-item">Method: <p id="Method"></p>
+        </li>
+        <li class="list-group-item">Cantidad: <p id="Cantidad"></p>
+        </li>
+        <li class="list-group-item">Size: <p id="Size"></p>
+        </li>
+        <li class="list-group-item">Crust: <p id="Crust"></p>
+        </li>
+        <li class="list-group-item">Toppings: <p id="Toppings"></p>
+        </li>
         {% endfor %}
-
         <span>
-            <li class="list-group-item">Total:
-                {{ session.carrito.productos[0].precio }}
+            <li class="list-group-item">Total: <p id="total"></p>
             </li>
         </span>
     </ul>
@@ -59,6 +62,18 @@
         let modal = new bootstrap.Modal(document.querySelector('.modal'));
         modal.show();
     });
+
+    document.getElementById("total").innerHTML = sessionStorage.getItem("topping_total")
+    document.getElementById("Method").innerHTML = sessionStorage.getItem("Method")
+    document.getElementById("Cantidad").innerHTML = sessionStorage.getItem("Cantidad")
+    document.getElementById("Size").innerHTML = sessionStorage.getItem("size")
+    document.getElementById("Crust").innerHTML = sessionStorage.getItem("Crust")
+    document.getElementById("Toppings").innerHTML = sessionStorage.getItem("Toppings")
+
+
+
+
+
 
 </script>
 {% endblock %}

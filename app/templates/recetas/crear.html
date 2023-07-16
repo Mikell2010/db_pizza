@@ -22,30 +22,30 @@
             <div class="col-md-6">
 
                 <h6>Method:</h6>
-                <select class="form-select" aria-label="Default select example" name="method">
-                    <option value="CO">CarryOut - $0</option>
-                    <option value="DL">Delivery - $1000</option>
+                <select id="Method" class="form-select" aria-label="Default select example" name="method">
+                    <option value="0" selected>CarryOut - $0</option>
+                    <option value="1000">Delivery - $1000</option>
                 </select>
 
 
                 <h6>Size:</h6>
-                <select class="form-select" aria-label="Default select example" name="size">
-                    <option value="L">Large - $2000</option>
-                    <option value="M">Medium -$1500</option>
-                    <option value="S">Small -$1000</option>
+                <select id="Size" class="form-select" aria-label="Default select example" name="size">
+                    <option value="2000">Large - $2000</option>
+                    <option value="1500">Medium -$1500</option>
+                    <option value="1000" selected>Small -$1000</option>
                 </select>
 
 
                 <h6>Crust:</h6>
-                <select class="form-select" aria-label="Default select example" name="crust">
-                    <option value="G">Gruesa</option>
+                <select id="Crust" class="form-select" aria-label="Default select example" name="crust">
+                    <option value="G" selected>Gruesa</option>
                     <option value="D">Delgada</option>
                 </select>
 
 
                 <h6>Cantidad:</h6>
-                <select class="form-select" aria-label="Default select example" name="cantidad">
-                    <option value="1">1</option>
+                <select id="Cantidad" class="form-select" aria-label="Default select example" name="cantidad">
+                    <option value="1" selected>1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -145,11 +145,7 @@
                         </label>
                     </div>
 
-                    <!-- <button type="button" class="btn btn-secondary mt-4" data-toggle="modal" data-target="#ticketModal"> -->
-
-                    <a class="btn btn-outline-success" onclick="addToOrder()">Add to Order</a>
-                    <!-- <a class="btn btn-outline-success" href="/account" onclick="addToOrder()">Add to Order</a> -->
-                    <!-- </button> -->
+                    <a class="btn btn-outline-success" href="order" onclick="addToOrder()">Add to Order</a>
                 </div>
             </div>
         </div>
@@ -175,6 +171,7 @@
 
     toppings = document.getElementById("toppings").innerHTML.split(",")
     favorite = document.getElementById("favorite").innerHTML
+    topping_total = 0;
 
     const topping_ids = {
         "mozzarella": "topping1",
@@ -209,34 +206,38 @@
     }
 
     function addToOrder(params) {
-        console.log("addToOrder");
 
-        topping1 = document.getElementById("topping1").value
-        console.log(topping1);
-        topping2 = document.getElementById("topping2").value
-        console.log(topping2);
-        topping3 = document.getElementById("topping3").value
-        console.log(topping3);
-        topping4 = document.getElementById("topping4").value
-        console.log(topping4);
-        topping5 = document.getElementById("topping5").value
-        console.log(topping5);
-        topping6 = document.getElementById("topping6").value
-        console.log(topping6);
-        topping7 = document.getElementById("topping7").value
-        console.log(topping7);
-        topping8 = document.getElementById("topping8").value
-        console.log(topping8);
-        topping9 = document.getElementById("topping9").value
-        console.log(topping9);
-        topping10 = document.getElementById("topping10").value
-        console.log(topping10);
-        topping11 = document.getElementById("topping11").value
-        console.log(topping11);
+        toppings = document.getElementsByClassName("form-check-input")
+
+        for (let index = 0; index < Object.keys(toppings).length; index++) {
+            const element = Object.keys(toppings)[index];
+
+            checked_topping = (toppings[element].checked);
+
+            if (checked_topping) {
+                topping_total += parseInt(toppings[element].value)
+            }
+
+        }
+
+        e = (document.getElementById("Method"))
+        method_price = parseInt(e.value)
+        method_text = e.options[e.selectedIndex].text;
+
+        e = (document.getElementById("Size"))
+        size_price = parseInt(e.value)
+        size_text = e.options[e.selectedIndex].text;
+
+        Crust = document.getElementById("Crust").value
+        Cantidad = parseInt(document.getElementById("Cantidad").value)
+
+        sessionStorage.setItem("method", method_text);
+        sessionStorage.setItem("size", size_text);
+        sessionStorage.setItem("Crust", Crust);
+        sessionStorage.setItem("Cantidad", Cantidad);
+        sessionStorage.setItem("topping_total", (Cantidad * topping_total) + method_price + size_price);
 
     }
-
-
 
 </script>
 
