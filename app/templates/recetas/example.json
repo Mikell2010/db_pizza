@@ -1,0 +1,26 @@
+{
+    'carrito': {
+        'id': 1, 
+        'productos': [
+            {
+                'cantidad': 1, 
+                'precio': 1000000000000000, 
+                'producto_id': 1
+            },
+            {
+                    'cantidad': 1, 
+                    'precio': 200, 
+                    'producto_id': 2
+            }
+        ]
+    }, 
+    'usuario': {
+                    'apellido': 'Reyes Silva', 
+                    'ciudad': 'La Florida', 
+                    'direccion': 'Nueva Uno 7574',
+                     'email': 'rod.reyes.s@gmail.com',
+                      'nombre': 'Rodrigo Andres', 
+                      'region': 'RM', 
+                      'usuario_id': 1
+    }
+}

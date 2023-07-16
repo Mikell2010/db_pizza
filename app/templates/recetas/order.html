@@ -9,15 +9,20 @@
         <strong>Your Order</strong>
     </div>
     <ul class="list-group list-group-flush">
+
+        {% for producto in session.carrito.productos %}
         <li class="list-group-item">Method: </li>
-        <li class="list-group-item">Cantidad: </li>
+        <li class="list-group-item">Cantidad: {{session.carrito.productos[0].cantidad}} </li>
         <li class="list-group-item">Size: </li>
         <li class="list-group-item">Crust: </li>
         <li class="list-group-item">Toppings: </li>
-        <span>
-            <li class="list-group-item">Total: </li>
-        </span>
+        {% endfor %}
 
+        <span>
+            <li class="list-group-item">Total:
+                {{ session.carrito.productos[0].precio }}
+            </li>
+        </span>
     </ul>
     <div>
         <!-- <button type="button" class="btn btn-danger">Start Over</button> -->
@@ -42,7 +47,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Gracias</button>
-                
+
             </div>
         </div>
     </div>

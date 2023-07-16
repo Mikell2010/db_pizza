@@ -26,8 +26,10 @@ def account():
 # Ruta para mostrar la página principal y el carrito de compras
 @app.route('/carrito/')
 def mostrar_carrito():
-    # Obtener el carrito de la sesión o crear uno nuevo
-    if "carrito" not in session:
+    print("carrito")
+    print(session["carrito"])
+
+    if session is None:
         session["carrito"] = {
             "id": session["usuario"]["usuario_id"],
             "productos": [
@@ -44,13 +46,34 @@ def mostrar_carrito():
             ]
         }
         session['carrito'] = []
-    
+    else:
+        print("Session Found!")
+        session["carrito"] = {
+            "id": session["usuario"]["usuario_id"],
+            "productos": [
+                {
+                    "producto_id": 1,
+                    "cantidad": 1,
+                    "precio": 1000000000000000
+                },
+                {
+                    "producto_id": 2,
+                    "cantidad": 1,
+                    "precio": 200
+                }
+            ]
+        }
+        # session['carrito'] = []
+    # Obtener el carrito de la sesión o crear uno nuevo
+
     carrito = session['carrito']
-    #print(session['usuario']['usuario_id'])
-    #session['usuario'].append(session['usuario']['usuario_id']) sesion usuario nueva clave, agregar otra clave a la sesion 
+    print(session)
+    # session['usuario'].append(session['usuario']['usuario_id']) sesion usuario nueva clave, agregar otra clave a la sesion
     return render_template('recetas/carrito.html', carrito=carrito)
 
 # Ruta para agregar un producto al carrito
+
+
 @app.route('/agregar', methods=['POST'])
 def agregar_al_carrito():
     producto = request.form.get('producto')
@@ -61,7 +84,6 @@ def agregar_al_carrito():
     return redirect(url_for('mostrar_carrito'))
 
 
-
 @app.route('/order', methods=['GET', 'POST'])
 def order():
     if request.method == 'POST':
@@ -70,5 +92,7 @@ def order():
     # session['pedido'] = {
     # 'methods': '<methods>'
     # }
+    print("session /order")
+    print(session)
 
-    return render_template('recetas/order.html')
+    return render_template('recetas/order.html', session=session)
