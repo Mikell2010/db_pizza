@@ -145,7 +145,8 @@
                         </label>
                     </div>
 
-                    <a class="btn btn-outline-success" href="order" onclick="addToOrder()">Add to Order</a>
+                    <!-- <a class="btn btn-outline-success" href="order" onclick="addToOrder()">Add to Order</a> -->
+                    <a class="btn btn-outline-success" onclick="addToOrder()">Add to Order</a>
                 </div>
             </div>
         </div>
@@ -231,9 +232,24 @@
         Crust = document.getElementById("Crust").value
         Cantidad = parseInt(document.getElementById("Cantidad").value)
 
-        sessionStorage.setItem("method", method_text);
-        sessionStorage.setItem("size", size_text);
-        sessionStorage.setItem("Crust", Crust);
+        if (sessionStorage.getItem("method") !== null) {
+            sessionStorage.setItem("method", sessionStorage.getItem("method") + ',' + method_text);
+        } else {
+            sessionStorage.setItem("method", method_text);
+        }
+
+        if (sessionStorage.getItem("size") !== null) {
+            sessionStorage.setItem("size", sessionStorage.getItem("size") + ',' + size_text);
+        } else {
+            sessionStorage.setItem("size", size_text);
+        }
+
+        if (sessionStorage.getItem("Crust") !== null) {
+            sessionStorage.setItem("Crust", sessionStorage.getItem("Crust") + ',' + Crust);
+        } else {
+            sessionStorage.setItem("Crust", Crust);
+        }
+
         sessionStorage.setItem("Cantidad", Cantidad);
         sessionStorage.setItem("topping_total", (Cantidad * topping_total) + method_price + size_price);
 
