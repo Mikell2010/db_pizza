@@ -22,30 +22,30 @@
             <div class="col-md-6">
 
                 <h6>Method:</h6>
-                <select class="form-select" aria-label="Default select example" name="method">
-                    <option value="CO">CarryOut - $0</option>
-                    <option value="DL">Delivery - $1000</option>
+                <select id="Method" class="form-select" aria-label="Default select example" name="method">
+                    <option value="0" selected>CarryOut - $0</option>
+                    <option value="1000">Delivery - $1000</option>
                 </select>
 
 
                 <h6>Size:</h6>
-                <select class="form-select" aria-label="Default select example" name="size">
-                    <option value="L">Large - $2000</option>
-                    <option value="M">Medium -$1500</option>
-                    <option value="S">Small -$1000</option>
+                <select id="Size" class="form-select" aria-label="Default select example" name="size">
+                    <option value="2000">Large - $2000</option>
+                    <option value="1500">Medium -$1500</option>
+                    <option value="1000" selected>Small -$1000</option>
                 </select>
 
 
                 <h6>Crust:</h6>
-                <select class="form-select" aria-label="Default select example" name="crust">
-                    <option value="G">Gruesa</option>
+                <select id="Crust" class="form-select" aria-label="Default select example" name="crust">
+                    <option value="G" selected>Gruesa</option>
                     <option value="D">Delgada</option>
                 </select>
 
 
                 <h6>Cantidad:</h6>
-                <select class="form-select" aria-label="Default select example" name="cantidad">
-                    <option value="1">1</option>
+                <select id="Cantidad" class="form-select" aria-label="Default select example" name="cantidad">
+                    <option value="1" selected>1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -145,7 +145,7 @@
                         </label>
                     </div>
 
-                    <a class="btn btn-outline-success" href="/account" onclick="addToOrder()">Add to Order</a>
+                    <a class="btn btn-outline-success" href="order" onclick="addToOrder()">Add to Order</a>
                 </div>
             </div>
         </div>
@@ -208,7 +208,8 @@
     function addToOrder(params) {
         console.log("addToOrder");
 
-        toppings = document.getElementById("toppings").innerHTML.split(',')
+        // toppings = document.getElementById("toppings").innerHTML.split(',')
+
         toppings = document.getElementsByClassName("form-check-input")
 
         for (let index = 0; index < Object.keys(toppings).length; index++) {
@@ -222,7 +223,17 @@
 
         }
 
-        sessionStorage.setItem("topping_total", topping_total);
+        method = parseInt(document.getElementById("Method").value)
+        console.log(method);
+        size = parseInt(document.getElementById("Size").value)
+        console.log(size);
+        Crust = document.getElementById("Crust").value
+        console.log(Crust);
+        Cantidad = document.getElementById("Cantidad").value
+        console.log(Cantidad);
+
+
+        sessionStorage.setItem("topping_total", topping_total + method + size);
 
     }
 

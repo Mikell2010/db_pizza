@@ -10,17 +10,15 @@
     </div>
     <ul class="list-group list-group-flush">
 
-        {% for producto in session.carrito.productos %}
+        {% for producto in session %}
         <li class="list-group-item">Method: </li>
-        <li class="list-group-item">Cantidad: {{session.carrito.productos[0].cantidad}} </li>
+        <li class="list-group-item">Cantidad: {{session}} </li>
         <li class="list-group-item">Size: </li>
         <li class="list-group-item">Crust: </li>
         <li class="list-group-item">Toppings: </li>
         {% endfor %}
-
         <span>
-            <li class="list-group-item">Total:
-                {{ session.carrito.productos[0].precio }}
+            <li class="list-group-item">Total: <p id="total"></p>
             </li>
         </span>
     </ul>
@@ -59,6 +57,8 @@
         let modal = new bootstrap.Modal(document.querySelector('.modal'));
         modal.show();
     });
+
+    document.getElementById("total").innerHTML = sessionStorage.getItem("topping_total")
 
 </script>
 {% endblock %}

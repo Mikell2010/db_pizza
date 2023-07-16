@@ -95,6 +95,9 @@ def order():
     # 'methods': '<methods>'
     # }
     print("session /order")
+    producto = []
+    session['carrito'].append(producto)
+
     print(session)
 
     return render_template('recetas/order.html', session=session)
