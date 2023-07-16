@@ -74,7 +74,7 @@ def mostrar_carrito():
 # Ruta para agregar un producto al carrito
 
 
-@app.route('/agregar', methods=['POST'])
+@app.route('/agregar', methods=['GET', 'POST'])
 def agregar_al_carrito():
     producto = request.form.get('producto')
 
@@ -88,6 +88,8 @@ def agregar_al_carrito():
 def order():
     if request.method == 'POST':
         Pizza.get_all(request.form)
+
+    # session['carrito']
 
     # session['pedido'] = {
     # 'methods': '<methods>'
