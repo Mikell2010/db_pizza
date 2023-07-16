@@ -229,13 +229,13 @@
         size_text = e.options[e.selectedIndex].text;
 
         Crust = document.getElementById("Crust").value
-        Cantidad = document.getElementById("Cantidad").value
+        Cantidad = parseInt(document.getElementById("Cantidad").value)
 
         sessionStorage.setItem("method", method_text);
         sessionStorage.setItem("size", size_text);
         sessionStorage.setItem("Crust", Crust);
         sessionStorage.setItem("Cantidad", Cantidad);
-        sessionStorage.setItem("topping_total", topping_total + method_price + size_price);
+        sessionStorage.setItem("topping_total", (Cantidad * topping_total) + method_price + size_price);
 
     }
 
