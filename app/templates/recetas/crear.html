@@ -38,8 +38,8 @@
 
                 <h6>Crust:</h6>
                 <select id="Crust" class="form-select" aria-label="Default select example" name="crust">
-                    <option value="G" selected>Gruesa</option>
-                    <option value="D">Delgada</option>
+                    <option value="Gruesa" selected>Gruesa</option>
+                    <option value="Delgada">Delgada</option>
                 </select>
 
 
@@ -69,77 +69,77 @@
                     <p>Aquí puedes seleccionar tus toppings favoritos</p>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping1" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping1" name="Mozzarella">
                         <label class="form-check-label" for="topping1">
                             Mozzarella
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping2" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping2" name="Salsadetomate">
                         <label class="form-check-label" for="topping2">
                             Salsa de Tomate
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping3" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping3" name="Albahaca">
                         <label class="form-check-label" for="topping3">
                             Albahaca
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping4" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping4" name="Jamón">
                         <label class="form-check-label" for="topping4">
                             Jamón
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping5" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping5" name="Piña">
                         <label class="form-check-label" for="topping5">
                             Piña
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping6" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping6" name="Pepperoni">
                         <label class="form-check-label" for="topping6">
                             Pepperoni
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping7" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping7" name="Aceitunas">
                         <label class="form-check-label" for="topping7">
                             Aceitunas
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping8" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping8" name="Cebolla">
                         <label class="form-check-label" for="topping8">
                             Cebolla
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping9" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping9" name="Champiñones>
                         <label class="form-check-label" for="topping9">
                             Champiñones
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping10" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping10" name="Pimentón">
                         <label class="form-check-label" for="topping10">
                             Pimentón
                         </label>
                     </div>
 
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="500" id="topping11" name="toppings">
+                        <input class="form-check-input" type="checkbox" value="500" id="topping11" name="Tomate">
                         <label class="form-check-label" for="topping11">
                             Tomate
                         </label>
@@ -170,8 +170,11 @@
 
 <script>
 
-    toppings = document.getElementById("toppings").innerHTML.split(",")
-    favorite = document.getElementById("favorite").innerHTML
+    toppings = document.getElementById("toppings").innerHTML.split(",");
+    sessionStorage.setItem("toppings", JSON.stringify(toppings));
+    
+
+    favorite = document.getElementById("favorite").innerHTML;
     topping_total = 0;
 
     const topping_ids = {
@@ -208,9 +211,10 @@
 
     }
 
-    function addToOrder(params) {
+    function addToOrder() {
 
         toppings = document.getElementsByClassName("form-check-input")
+        topping_description = ""
 
         for (let index = 0; index < Object.keys(toppings).length; index++) {
             const element = Object.keys(toppings)[index];
@@ -218,10 +222,15 @@
             checked_topping = (toppings[element].checked);
 
             if (checked_topping) {
+                topping_description += (toppings[element]).name + ", ";  
                 topping_total += parseInt(toppings[element].value)
             }
 
         }
+
+
+        console.log(topping_description);
+        sessionStorage.setItem("toppings", JSON.stringify(topping_description));
 
         e = (document.getElementById("Method"))
         method_price = parseInt(e.value)
