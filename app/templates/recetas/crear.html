@@ -201,8 +201,6 @@
                     .replace(/ /g, "")
             );
 
-            console.log(topping);
-
             if (topping_ids[topping] === document.name.elements[i].id) {
                 document.name.elements[i].checked = true;
             }
@@ -229,7 +227,6 @@
         }
 
 
-        console.log(topping_description);
         sessionStorage.setItem("toppings", JSON.stringify(topping_description));
 
         e = (document.getElementById("Method"))
@@ -262,7 +259,13 @@
         }
 
         sessionStorage.setItem("Cantidad", Cantidad);
-        sessionStorage.setItem("topping_total", (Cantidad * topping_total) + method_price + size_price);
+        previousValue = (parseInt(sessionStorage.getItem("topping_total")));
+
+        if (Object.is(previousValue, NaN)) {
+            previousValue = 0;
+        }
+
+        sessionStorage.setItem("topping_total", (Cantidad * topping_total) + method_price + size_price + previousValue);
 
     }
 
