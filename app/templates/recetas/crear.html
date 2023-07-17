@@ -145,8 +145,8 @@
                         </label>
                     </div>
 
-                    <!-- <a class="btn btn-outline-success" href="order" onclick="addToOrder()">Add to Order</a> -->
-                    <a class="btn btn-outline-success" onclick="addToOrder()">Add to Order</a>
+                    <a class="btn btn-outline-success" href="order" onclick="addToOrder()">Add to Order</a>
+                    <!-- <a class="btn btn-outline-success" onclick="addToOrder()">Add to Order</a> -->
                 </div>
             </div>
         </div>
@@ -176,7 +176,7 @@
 
     const topping_ids = {
         "mozzarella": "topping1",
-        "Salsa de Tomate": "topping2",
+        "salsadetomate": "topping2",
         "albahaca": "topping3",
         "jamon": "topping4",
         "piña": "topping5",
@@ -185,7 +185,7 @@
         "Cebolla": "topping8",
         "champignon": "topping9",
         "Pimentón": "topping10",
-        "Tomate": "topping11"
+        "tomate": "topping11"
     }
 
     for (let i = 0; i < document.name.elements.length; i++) {
@@ -197,6 +197,8 @@
                     .slice(0, element.length)
                     .replace(/ /g, "")
             );
+
+            console.log(topping);
 
             if (topping_ids[topping] === document.name.elements[i].id) {
                 document.name.elements[i].checked = true;

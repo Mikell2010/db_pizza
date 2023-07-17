@@ -9,10 +9,11 @@ from app import app
 # Ruta para procesar el formulario de la pizza y mostrar los detalles en "account"
 @app.route('/account', methods=['GET', 'POST'])
 def account():
+    print("account")
     if request.method == 'POST':
         Pizza.get_all(request.form)
 
-    return render_template('recetas/detalle.html')
+    return render_template('recetas/order.html')
 
 
 # Ruta para mostrar los detalles de la pizza en "account"
@@ -91,8 +92,8 @@ def order():
 
     print("session /order")
     producto = []
-    session['carrito'].append(producto)
+    # session['carrito'].append(producto)
 
     print(session)
 
-    return render_template('recetas/order.html', session=session)
+    return render_template('recetas/detalle.html', session=session)

@@ -167,6 +167,7 @@ def craft_a_pizza():
     if request.args.get('random') == 'true':
         pizzas = Pizza.get_random()
         pizza_topping = pizzas['descripcion_pizza']
+        print(pizzas)
 
     if request.args.get('favorite') == 'true':
         usuario_id = session['usuario']['usuario_id']
