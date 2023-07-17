@@ -15,15 +15,6 @@ def account():
 
     return render_template('recetas/order.html')
 
-
-# Ruta para mostrar los detalles de la pizza en "account"
-# @app.route('/account/<pizza_detalle>', methods=['GET'])
-# def show_pizza_details(pizza_detalle):
-    # Parsear los detalles de la pizza desde la URL que fueron pasados como argumento
-    #pizza_detalle = eval(pizza_detalle)
-
-    # return render_template('detalle.html', pizza=pizza_detalle)
-
 # Ruta para mostrar la página principal y el carrito de compras
 @app.route('/carrito/')
 def mostrar_carrito():
@@ -72,9 +63,6 @@ def mostrar_carrito():
     # session['usuario'].append(session['usuario']['usuario_id']) sesion usuario nueva clave, agregar otra clave a la sesion
     return render_template('recetas/carrito.html', carrito=carrito)
 
-# Ruta para agregar un producto al carrito
-
-
 @app.route('/agregar', methods=['GET', 'POST'])
 def agregar_al_carrito():
     producto = request.form.get('producto')
@@ -84,16 +72,9 @@ def agregar_al_carrito():
 
     return redirect(url_for('mostrar_carrito'))
 
-
 @app.route('/order', methods=['GET', 'POST'])
 def order():
     if request.method == 'POST':
         Pizza.get_all(request.form)
-
-    print("session /order")
-    producto = []
-    # session['carrito'].append(producto)
-
-    print(session)
 
     return render_template('recetas/detalle.html', session=session)

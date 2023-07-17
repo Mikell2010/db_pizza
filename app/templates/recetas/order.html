@@ -32,7 +32,7 @@
         <a class="btn btn-outline-danger" href="menu_principal">Start Over</a>
 
         <!-- <button type="button" class="btn btn-success">Purchase</button> -->
-        <a id="purchaseButton" class="btn btn-outline-success" href="#">Purchase</a>
+        <a id="purchaseButton" onclick="purchase()" class="btn btn-outline-success" href="#">Purchase</a>
 
     </div>
 
@@ -63,13 +63,29 @@
         modal.show();
     });
 
-    document.getElementById("total").innerHTML = sessionStorage.getItem("topping_total")
-    document.getElementById("Method").innerHTML = sessionStorage.getItem("method")
-    document.getElementById("Cantidad").innerHTML = sessionStorage.getItem("Cantidad")
-    document.getElementById("Size").innerHTML = sessionStorage.getItem("size")
-    document.getElementById("Crust").innerHTML = sessionStorage.getItem("Crust")
-    document.getElementById("Toppings").innerHTML = sessionStorage.getItem("Toppings")
+    document.getElementById("total").innerHTML = sessionStorage.getItem("topping_total");
+    document.getElementById("Method").innerHTML = sessionStorage.getItem("method");
+    document.getElementById("Cantidad").innerHTML = sessionStorage.getItem("Cantidad");
+    document.getElementById("Size").innerHTML = sessionStorage.getItem("size");
+    document.getElementById("Crust").innerHTML = sessionStorage.getItem("Crust");
+    toppings = sessionStorage.getItem("toppings").split(",");
+    
+    toppings.forEach(element => {
+        console.log(element.replace(/\n/g, ''));
 
+        document.getElementById("Toppings").innerHTML += element
+    });
+
+    function purchase() {
+        document.getElementById("total").innerHTML = "";
+        document.getElementById("Method").innerHTML = ""
+        document.getElementById("Cantidad").innerHTML = ""
+        document.getElementById("Size").innerHTML = ""
+        document.getElementById("Crust").innerHTML = ""
+        document.getElementById("Toppings").innerHTML = ""
+
+        sessionStorage.clear();
+    }
 
 
 

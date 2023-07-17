@@ -146,28 +146,23 @@ def sorprendeme():
 
 @app.route('/craft_a_pizza', methods=['GET', 'POST'])
 def craft_a_pizza():
-    print("POST: ", request.url)
+    print("POST craft_a_pizza: ", request)
+    print(request.method)
     pizzas = []
     pizza_topping = []
     favorite = []
 
-    if request.method == 'post':
-        Pizza.agregar(request.form)  # logica formulario
+    # if request.method == 'GET':
+    #     selected_toppings = request.form
+    #     print(selected_toppings)
+    #     total = 0
 
-    
-        selected_toppings = request.form.getlist('toppings')
-        total = 0
-
-        for topping in selected_toppings:
-            total += int(topping)
-
-        return f"El total es: ${total}"
-
+    #     for topping in selected_toppings:
+    #         total += int(topping)
 
     if request.args.get('random') == 'true':
         pizzas = Pizza.get_random()
         pizza_topping = pizzas['descripcion_pizza']
-        print(pizzas)
 
     if request.args.get('favorite') == 'true':
         usuario_id = session['usuario']['usuario_id']
