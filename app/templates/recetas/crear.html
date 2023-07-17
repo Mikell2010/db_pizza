@@ -214,6 +214,7 @@
         toppings = document.getElementsByClassName("form-check-input")
         topping_description = ""
 
+        // TOPPINGS
         for (let index = 0; index < Object.keys(toppings).length; index++) {
             const element = Object.keys(toppings)[index];
 
@@ -225,32 +226,31 @@
             }
 
         }
-
-
+        console.log(topping_total); //ok
         sessionStorage.setItem("toppings", JSON.stringify(topping_description));
 
+        // METHOD
         e = (document.getElementById("Method"))
         method_price = parseInt(e.value)
         method_text = e.options[e.selectedIndex].text;
-
-        e = (document.getElementById("Size"))
-        size_price = parseInt(e.value)
-        size_text = e.options[e.selectedIndex].text;
-
-        Crust = document.getElementById("Crust").value
-        Cantidad = parseInt(document.getElementById("Cantidad").value)
 
         if (sessionStorage.getItem("method") !== null) {
             sessionStorage.setItem("method", sessionStorage.getItem("method") + ',' + method_text);
         } else {
             sessionStorage.setItem("method", method_text);
         }
+        // SIZE
+        e = (document.getElementById("Size"))
+        size_price = parseInt(e.value)
+        size_text = e.options[e.selectedIndex].text;
 
         if (sessionStorage.getItem("size") !== null) {
             sessionStorage.setItem("size", sessionStorage.getItem("size") + ',' + size_text);
         } else {
             sessionStorage.setItem("size", size_text);
         }
+        // CRUST
+        Crust = document.getElementById("Crust").value
 
         if (sessionStorage.getItem("Crust") !== null) {
             sessionStorage.setItem("Crust", sessionStorage.getItem("Crust") + ',' + Crust);
@@ -258,14 +258,25 @@
             sessionStorage.setItem("Crust", Crust);
         }
 
-        sessionStorage.setItem("Cantidad", Cantidad);
+        // CANTIDAD
+        Cantidad = parseInt(document.getElementById("Cantidad").value)
+        console.log(Cantidad); //ok
+        CantidadString = parseInt(document.getElementById("CantidadString"))
+        console.log(CantidadString); //NaN
+        if (sessionStorage.getItem("Cantidad") !== null) {
+            sessionStorage.setItem("Cantidad", sessionStorage.getItem("Cantidad") + ',' + Cantidad);
+        } else {
+            sessionStorage.setItem("Cantidad", Cantidad);
+        }
+
+        // TOTAL
         previousValue = (parseInt(sessionStorage.getItem("topping_total")));
 
         if (Object.is(previousValue, NaN)) {
             previousValue = 0;
         }
 
-        sessionStorage.setItem("topping_total", (Cantidad * topping_total) + method_price + size_price + previousValue);
+        sessionStorage.setItem("topping_total", ( parseInt(document.getElementById("Cantidad").value) * topping_total) + method_price + size_price + previousValue);
 
     }
 
